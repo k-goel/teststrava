@@ -4,7 +4,7 @@ import requests
 # Replace with your Strava app's client ID and secret
 CLIENT_ID = '132513'
 CLIENT_SECRET = '98b0aa1146fde236a9c30822f23fe4b63acf0531'
-REDIRECT_URI = 'https://teststrava.streamlit.app/'  # Update this to your deployed URL
+REDIRECT_URI = 'http://localhost:8501/'  # Update this to your deployed URL
 AUTHORIZATION_URL = 'https://www.strava.com/oauth/authorize'
 TOKEN_URL = 'https://www.strava.com/oauth/token'
 ACTIVITIES_URL = 'https://www.strava.com/api/v3/athlete/activities'
@@ -36,10 +36,10 @@ else:
     activities = fetch_activities(st.session_state.access_token)
     st.write(activities)
 
-# Handle OAuth2 callback
-params = st.query_params
-if 'code' in params:
-    code = params['code'][0]
+# Handle OAuth2 callback using updated method
+query_params = st.query_params
+if 'code' in query_params:
+    code = query_params['code'][0]
     access_token = get_access_token(code)
     st.session_state.access_token = access_token
     st.write("Authentication successful. You can now view your workout data.")
