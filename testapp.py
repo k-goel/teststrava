@@ -37,7 +37,7 @@ else:
     st.write(activities)
 
 # Handle OAuth2 callback
-params = st.query_params()
+params = st.query_params
 if 'code' in params:
     code = params['code'][0]
     access_token = get_access_token(code)
